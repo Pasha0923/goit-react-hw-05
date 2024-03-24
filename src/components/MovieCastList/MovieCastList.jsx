@@ -5,8 +5,7 @@ const MovieCastList = ({ movieCast }) => {
   return (
     <div className={css.imageWrapper}>
       <ul className={css.list}>
-        {movieCast !== null &&
-          Array.isArray(movieCast) &&
+        {Array.isArray(movieCast) &&
           movieCast.map((actor) => (
             <li className={css.item} key={actor.id}>
               <img

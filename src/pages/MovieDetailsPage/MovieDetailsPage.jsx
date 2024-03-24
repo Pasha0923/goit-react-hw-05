@@ -25,7 +25,7 @@ const MovieDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const location = useLocation();
-  const backLinkRef = useRef(location.state ?? "/search");
+  const backLinkRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
     async function fetchData() {
@@ -69,8 +69,18 @@ const MovieDetailsPage = () => {
                 {movieInfo.overview}
               </p>
               <p>
+                <b>Country: </b>
+                {movieInfo.production_countries
+                  .map((country) => country.name)
+                  .join(", ")}
+              </p>
+              <p>
                 <b>Genres:</b>{" "}
                 {movieInfo.genres.map((genre) => genre.name).join(", ")}
+              </p>
+              <p>
+                <b>Budget: </b>
+                {movieInfo.budget}
               </p>
             </div>
           </div>

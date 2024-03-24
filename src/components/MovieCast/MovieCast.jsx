@@ -15,8 +15,8 @@ const MovieCast = () => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const cast = await getCastMovies(movieId);
-        setMovieCast(cast);
+        const data = await getCastMovies(movieId);
+        setMovieCast(data);
       } catch (err) {
         setIsError(true);
       } finally {
@@ -31,10 +31,10 @@ const MovieCast = () => {
     <div>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
+      <MovieCastList movieCast={movieCast} />
       {/* {movieCast.length === 0 && isError && !isLoading && (
         <p>No information about movie cast </p>
       )} */}
-      <MovieCastList movieCast={movieCast} />
     </div>
   );
 };

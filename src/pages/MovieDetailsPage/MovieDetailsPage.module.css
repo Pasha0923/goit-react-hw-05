@@ -24,3 +24,18 @@
   gap: 20px;
   list-style-type: none;
 }
+.addItems {
+  display: flex;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--main-green);
+  border: 1px solid var(--light-green);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.active {
+  color: var(--dark-green);
+  background-color: var(--main-yellow);
+  border: 1px solid var(--main-green);
+}
