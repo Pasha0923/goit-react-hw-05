@@ -16,7 +16,6 @@ const MovieCast = () => {
       try {
         setIsLoading(true);
         const cast = await getCastMovies(movieId);
-
         setMovieCast(cast);
       } catch (err) {
         setIsError(true);

@@ -18,9 +18,9 @@
   padding: 16px;
   border-radius: 12px;
 }
-/* .list {
+.list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   list-style-type: none;
-} */
+}

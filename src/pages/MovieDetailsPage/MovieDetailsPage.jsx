@@ -1,11 +1,24 @@
-import { Suspense, useEffect, useRef, useState } from "react";
-import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  // Route,
+  // Routes,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { getFullInfoMovies } from "../../services/api";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
-import MovieCast from "../../components/MovieCast/MovieCast";
-import MovieReviews from "../../components/MovieReviews/MovieReviews";
+// import MovieCast from "../../components/MovieCast/MovieCast";
+// import MovieReviews from "../../components/MovieReviews/MovieReviews";
 import css from "./MovieDetailsPage.module.css";
+const getNavLinkClassNames = ({ isActive }) =>
+  clsx(css.addItems, {
+    [css.active]: isActive,
+  });
 const MovieDetailsPage = () => {
   const { movieId } = useParams(); // Get the product ID from the URL parameter.
   const [movieInfo, setMovieInfo] = useState(null);
@@ -64,21 +77,21 @@ const MovieDetailsPage = () => {
         </div>
       )}
       <div>
+        <h3>Addition information:</h3>
         <ul className={css.list}>
           <li>
-            <Link to="cast">Movie Cast</Link>
+            <NavLink className={getNavLinkClassNames} to="cast">
+              Movie Cast
+            </NavLink>
           </li>
           <li>
-            <Link to="reviews">Movie Review</Link>
+            <NavLink className={getNavLinkClassNames} to="reviews">
+              Movie Review
+            </NavLink>
           </li>
         </ul>
       </div>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="cast" element={<MovieCast />} />
-          <Route path="reviews" element={<MovieReviews />} />
-        </Routes>
-      </Suspense>
+      <Outlet />
     </div>
   );
 };

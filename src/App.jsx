@@ -7,17 +7,24 @@ import HomePage from "./pages/HomePage/HomePage";
 import MoviesPage from "./pages/MoviesPage/MoviesPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
 import Layout from "./components/Layout/Layout";
-
+import MovieCast from "./components/MovieCast/MovieCast";
+import MovieReviews from "./components/MovieReviews/MovieReviews";
+import { Suspense } from "react";
+import Loader from "./components/Loader/Loader";
 function App() {
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/:movieId/" element={<MovieDetailsPage />} />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId/" element={<MovieDetailsPage />} />
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
 
-        <Route path="*" element={<NotFoundPage to="/" replace />} />
-      </Routes>
+          <Route path="*" element={<NotFoundPage to="/" replace />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 }

@@ -56,6 +56,7 @@ const MoviesPage = () => {
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       <MovieList movies={movies} />
+      {/* {movies.length > 0 && <MovieList movies={movies} />} */}
     </div>
   );
 };
