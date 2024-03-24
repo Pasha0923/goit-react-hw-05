@@ -1,0 +1,14 @@
+.imageWrapper {
+  width: 160px;
+}
+
+.name {
+  margin-top: 4px;
+  color: #880808;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style-type: none;
+}

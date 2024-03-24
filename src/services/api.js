@@ -7,7 +7,7 @@ export const getTrendingMovies = async () => {
     {
       params: {
         language: "en",
-        api_key: "dbb87b387152f832b24d7949a9ccc49f4",
+        api_key: "bb87b387152f832b24d7949a9ccc49f4",
       },
       headers: {
         Authorization:
@@ -15,7 +15,7 @@ export const getTrendingMovies = async () => {
       },
     }
   );
-  //   console.log(response.results);
+  console.log(response);
   return response.data.results;
 };
 export const getSearchMovies = async (searchQuery) => {
@@ -25,7 +25,7 @@ export const getSearchMovies = async (searchQuery) => {
       params: {
         query: searchQuery,
         language: "en",
-        api_key: "dbb87b387152f832b24d7949a9ccc49f4",
+        api_key: "bb87b387152f832b24d7949a9ccc49f4",
       },
       headers: {
         Authorization:
@@ -33,7 +33,7 @@ export const getSearchMovies = async (searchQuery) => {
       },
     }
   );
-  //   console.log(response.results);
+  console.log(response.results);
   return response.data.results;
 };
 export const getFullInfoMovies = async (movieId) => {
@@ -42,7 +42,7 @@ export const getFullInfoMovies = async (movieId) => {
     {
       params: {
         language: "en",
-        api_key: "dbb87b387152f832b24d7949a9ccc49f4",
+        api_key: "bb87b387152f832b24d7949a9ccc49f4",
       },
       headers: {
         Authorization:
@@ -50,17 +50,17 @@ export const getFullInfoMovies = async (movieId) => {
       },
     }
   );
-  //   console.log(response.results);
-  return response.data.results;
+  //   console.log(response.data);
+  return response.data;
 };
 
-export const getCreditsMovies = async (movieId) => {
+export const getCastMovies = async (movieId) => {
   const response = await axios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/credits`,
     {
       params: {
         language: "en",
-        api_key: "dbb87b387152f832b24d7949a9ccc49f4",
+        api_key: "bb87b387152f832b24d7949a9ccc49f4",
       },
       headers: {
         Authorization:
@@ -68,8 +68,8 @@ export const getCreditsMovies = async (movieId) => {
       },
     }
   );
-  //   console.log(response.results);
-  return response.data.results;
+  //   console.log(response.data;
+  return response.data;
 };
 
 export const getReviewsMovies = async (movieId) => {
@@ -78,7 +78,7 @@ export const getReviewsMovies = async (movieId) => {
     {
       params: {
         language: "en",
-        api_key: "dbb87b387152f832b24d7949a9ccc49f4",
+        api_key: "bb87b387152f832b24d7949a9ccc49f4",
       },
       headers: {
         Authorization:
@@ -86,6 +86,6 @@ export const getReviewsMovies = async (movieId) => {
       },
     }
   );
-  //   console.log(response.results);
-  return response.data.results;
+
+  return response.data;
 };

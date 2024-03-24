@@ -1,0 +1,20 @@
+.wrapper {
+  border-radius: 10px;
+  background-color: #fac898;
+  padding: 8px 12px;
+}
+
+.item {
+  color: #ff4433;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #fac898;
+}
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
