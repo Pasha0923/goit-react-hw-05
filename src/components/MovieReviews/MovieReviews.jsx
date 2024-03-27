@@ -9,21 +9,21 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 export default function MovieReviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [loader, setLoader] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     if (!movieId) return;
     const fetchDataReviews = async () => {
       try {
-        setLoader(true);
-        setError(null);
+        setIsLoading(true);
+        setIsError(null);
         const res = await getReviewsMovies(movieId);
         setReviews(res);
       } catch (error) {
-        setError(error.message);
+        setIsError(error.message);
       } finally {
-        setLoader(false);
+        setIsLoading(false);
       }
     };
     fetchDataReviews();
@@ -31,11 +31,13 @@ export default function MovieReviews() {
 
   return (
     <>
-      {loader && <Loader />}
-      {error && <ErrorMessage message={error} />}
-      {!loader && !error && reviews.length === 0 && (
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
+      {reviews.length === 0 && !isError && !isLoading && (
         <ErrorMessage message="We don't have any reviews for this movie" />
       )}
+      {/* Використовуємо відображення за умовою і додаємо розмітку списку відгуків
+      (оглядів) на кінофільм у випадку, якщо у масиві є хоча б один відгук. */}
       {reviews.length > 0 && (
         <ul className={css.reviewsContainer}>
           {reviews.map(({ id, author, content }) => (

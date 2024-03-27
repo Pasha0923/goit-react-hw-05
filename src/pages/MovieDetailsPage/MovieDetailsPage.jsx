@@ -4,8 +4,6 @@ import {
   Link,
   NavLink,
   Outlet,
-  // Route,
-  // Routes,
   useLocation,
   useParams,
 } from "react-router-dom";
@@ -26,6 +24,7 @@ const MovieDetailsPage = () => {
   const [isError, setIsError] = useState(false);
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/movies");
+  // console.log(location);
 
   useEffect(() => {
     async function fetchData() {
@@ -101,6 +100,7 @@ const MovieDetailsPage = () => {
           </li>
         </ul>
       </div>
+
       <Outlet />
     </div>
   );

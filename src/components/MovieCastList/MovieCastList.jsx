@@ -19,3 +19,17 @@ const MovieCastList = ({ movieCast }) => {
   );
 };
 export default MovieCastList;
+
+// export default function MovieCastList({ movieCast }) {
+//   return (
+//     <ul className={css.list}>
+//       {movieCast !== null &&
+//         Array.isArray(movieCast) &&
+//         movieCast.map((actor) => (
+//           <li className={css.item} key={actor.id}>
+//             <MovieCastItem actor={actor} />
+//           </li>
+//         ))}
+//     </ul>
+//   );
+// }

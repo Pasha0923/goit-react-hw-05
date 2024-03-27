@@ -19,23 +19,30 @@
   border-radius: 12px;
 }
 .list {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  list-style-type: none;
+  list-style-type: none; */
+  margin: 48px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  justify-content: center;
 }
 .addItems {
-  display: flex;
+  color: #213547;
+  border: 1px solid #cccccc;
   padding: 10px 20px;
-  text-decoration: none;
-  color: var(--white);
-  background-color: var(--main-green);
-  border: 1px solid var(--light-green);
   border-radius: 8px;
-  transition: all 0.3s;
+  width: 166px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-bottom: 10px 20px;
 }
 .active {
-  color: var(--dark-green);
+  color: blue;
   background-color: var(--main-yellow);
-  border: 1px solid var(--main-green);
+  border-color: 1px solid var(--main-green);
 }

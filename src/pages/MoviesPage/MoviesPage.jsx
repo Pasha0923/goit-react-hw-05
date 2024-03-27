@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-// import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
-// import Loader from "../components/Loader/Loader";
-// import SearchMovies from "../components/SearchMovies/SearchMovies";
 import { useSearchParams } from "react-router-dom";
 import MovieList from "../../components/MovieList/MovieList";
 import { getSearchMovies } from "../../services/api";
@@ -10,14 +7,14 @@ import Loader from "../../components/Loader/Loader";
 import SearchMovies from "../../components/SearchMovies/SearchMovies";
 
 const MoviesPage = () => {
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   //   const [searchQuery, setSearchQuery] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   // Зчитуємо значення url параметра (парметрів)
-  // і записуємо його в змінну. Звертаємось до параиетрів метод гет і по ключу отримуємо їх знаення
-  const searchQuery = searchParams.get("query");
+  // і записуємо його в змінну. Звертаємось до параметрів метод гет і по ключу отримуємо їх знаення
+  const searchQuery = searchParams.get("query") ?? "";
 
   useEffect(() => {
     if (searchQuery === null) return;
@@ -26,8 +23,14 @@ const MoviesPage = () => {
       try {
         setIsLoading(true);
         const data = await getSearchMovies(searchQuery);
-
-        setMovies(data);
+        if (data.length === 0) {
+          setIsError(
+            "Sorry, there are no movies matching your search query. Please try again!"
+          );
+          setMovies([]);
+        } else {
+          setMovies(data);
+        }
       } catch (err) {
         setIsError(true);
       } finally {
@@ -49,14 +52,20 @@ const MoviesPage = () => {
 
   return (
     <div>
+      {isError && <ErrorMessage />}
+      {isLoading && <Loader />}
+
+      <h2>
+        <b>Search movie</b>
+      </h2>
+
       <SearchMovies
         searchQuery={searchQuery}
         onSetSearchQuery={onSetSearchQuery}
       />
-      {isError && <ErrorMessage />}
-      {isLoading && <Loader />}
-      <MovieList movies={movies} />
-      {/* {movies.length > 0 && <MovieList movies={movies} />} */}
+      {/* Перевірка на довжина масиву. Будемо рендерити список кінофільмів  лише в
+      разі, якщо в масиві буде хоча б один кінофільм */}
+      {movies.length > 0 && <MovieList movies={movies} />}
     </div>
   );
 };

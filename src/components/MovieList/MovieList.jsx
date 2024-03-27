@@ -11,7 +11,13 @@ const MovieList = ({ movies }) => {
           return (
             <li className={css.item} key={movie.id}>
               <Link state={location} to={`/movies/${movie.id}`}>
-                <h3>{movie.title}</h3>
+                <h3 className={css.title}>{movie.title}</h3>
+                <div className={css.imgContainer}>
+                  <img
+                    width={350}
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  />
+                </div>
               </Link>
               {/* Після того як натискаємо на посилання потрапляємо на
               строріку з детальною інформацією про кінофільм

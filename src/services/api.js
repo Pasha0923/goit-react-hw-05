@@ -33,7 +33,7 @@ export const getSearchMovies = async (searchQuery) => {
       },
     }
   );
-  console.log(response.results);
+  console.log(response.data.results);
   return response.data.results;
 };
 export const getFullInfoMovies = async (movieId) => {
@@ -50,7 +50,7 @@ export const getFullInfoMovies = async (movieId) => {
       },
     }
   );
-  //   console.log(response.data);
+  console.log(response);
   return response.data;
 };
 
@@ -68,8 +68,8 @@ export const getCastMovies = async (movieId) => {
       },
     }
   );
-  //   console.log(response.data;
-  return response.data;
+  console.log(response.data.cast);
+  return response.data.cast;
 };
 
 export const getReviewsMovies = async (movieId) => {
@@ -87,5 +87,5 @@ export const getReviewsMovies = async (movieId) => {
     }
   );
 
-  return response.data;
+  return response.data.results;
 };

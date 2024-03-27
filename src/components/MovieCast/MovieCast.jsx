@@ -7,7 +7,7 @@ import MovieCastList from "../MovieCastList/MovieCastList";
 
 const MovieCast = () => {
   const { movieId } = useParams(); // Get the product ID from the URL parameter.
-  const [movieCast, setMovieCast] = useState(null);
+  const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -29,12 +29,18 @@ const MovieCast = () => {
 
   return (
     <div>
+      
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <MovieCastList movieCast={movieCast} />
-      {/* {movieCast.length === 0 && isError && !isLoading && (
-        <p>No information about movie cast </p>
-      )} */}
+      {/* Використовуємо відображення за умовою !
+       якщо у масиві (нашого кінофільму) немає інформації про акторський склад 
+       то рендеримо повідомлення  */}
+      {movieCast.length === 0 && !isError && !isLoading && (
+        <ErrorMessage message="No information about movie cast" />
+      )}
+      {/* Використовуємо рендер за умовою і додаємо розмітку списку акторського
+складу на кінофільм у випадку, якщо у списку є хоча б один актор. */}
+      {movieCast.length > 0 && <MovieCastList movieCast={movieCast} />}
     </div>
   );
 };

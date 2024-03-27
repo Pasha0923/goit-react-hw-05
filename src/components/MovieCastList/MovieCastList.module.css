@@ -1,14 +1,44 @@
 .imageWrapper {
   width: 160px;
 }
-
+.item {
+  border: 1px solid #cccccc;
+  background-color: #8f8f8f;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 24px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  min-height: 325px;
+}
 .name {
   margin-top: 4px;
   color: #880808;
 }
 .list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style-type: none;
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  gap: 24px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media screen and (min-width: 670px) and (max-width: 899px) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1249px) {
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
