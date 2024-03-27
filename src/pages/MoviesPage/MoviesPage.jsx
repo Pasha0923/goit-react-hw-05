@@ -23,14 +23,7 @@ const MoviesPage = () => {
       try {
         setIsLoading(true);
         const data = await getSearchMovies(searchQuery);
-        if (data.length === 0) {
-          setIsError(
-            "Sorry, there are no movies matching your search query. Please try again!"
-          );
-          setMovies([]);
-        } else {
-          setMovies(data);
-        }
+        setMovies(data);
       } catch (err) {
         setIsError(true);
       } finally {
@@ -52,17 +45,19 @@ const MoviesPage = () => {
 
   return (
     <div>
-      {isError && <ErrorMessage />}
       {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
 
       <h2>
         <b>Search movie</b>
       </h2>
-
       <SearchMovies
         searchQuery={searchQuery}
         onSetSearchQuery={onSetSearchQuery}
       />
+      {movies.length === 0 && !isError && !isLoading && (
+        <ErrorMessage message="Sorry, there are no movies matching your search query. Please try again!" />
+      )}
       {/* Перевірка на довжина масиву. Будемо рендерити список кінофільмів  лише в
       разі, якщо в масиві буде хоча б один кінофільм */}
       {movies.length > 0 && <MovieList movies={movies} />}
